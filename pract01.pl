@@ -4,8 +4,8 @@ sub sayName{
     print 'Andrew stanton';
 }
 sub sayHello2{
-    foreach(("Hello\n", 'World')) {
-        print $_;
+    foreach(("Hello\n", "World\n")) {
+        print;      # Default value is $_
     };
 }
 sub euros2pounds{
@@ -56,4 +56,4 @@ sub futureValue{
     }
     print "Final balance: $initBalance\n";
 }
-futureValue();
+sayHello2();
