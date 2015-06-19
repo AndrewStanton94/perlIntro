@@ -8,10 +8,10 @@ sub personalGreeting{
 }
 sub formalName{
     print "First name: ";
-    my $firstName = ucfirst lc <>;
-    my $initial = shift $firstName;
+    my $firstName = <>;
+    my $initial = uc substr $firstName, 0, 1;
     print "Last name: ";
     my $lastName = ucfirst lc <>;
-    print "$initial . $lastName";
+    print "$initial.$lastName";
 }
 formalName();
