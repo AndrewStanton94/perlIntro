@@ -62,5 +62,23 @@ sub exchangeTable{
         printf "%3u\t%5.2f\n", ($_, $_/1.15);
     }
 }
-
-exchangeTable();
+sub makeAcronym{
+    print "Enter sentence to make acronym: ";
+    my $input = <>;
+    my @words = split / /, $input;
+    foreach(@words) {
+        print uc substr $_, 0, 1;
+    }
+    print "\n";
+}
+sub nameToNumber{
+    print "Enter your name: ";
+    my $name = <>;
+    chomp $name;
+    my $wordLength = length $name;
+    foreach(0 .. $wordLength - 1) {
+        print substr $name, $_, 1 . "\n";
+        # print "$_ Hi";
+    }
+}
+nameToNumber();
