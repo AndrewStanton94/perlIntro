@@ -1,5 +1,7 @@
 use strict;
 use warnings;
+use 5.010;  # For say
+use input;
 sub personalGreeting{
     print 'What is your name: ';
     my $name = <>;
@@ -66,12 +68,44 @@ sub makeAcronym{
     print "\n";
 }
 sub nameToNumber{
+    my $total = 0;
     print "Enter your name: ";
     my $name = <>;
     chomp $name;
+    $name = uc $name;
     my $wordLength = length $name;
     foreach(0 .. $wordLength - 1) {
-        print substr($name, $_, 1), "\n";
+        my $char = substr $name, $_, 1;
+        my $numeric = (ord $char) - 64;
+        $total += $numeric;
+    }
+    say "$name = $total";
+}
+sub filesInCaps{
+    print "Enter filename: ";
+    my $fileName = <>;
+    open ('file', '<'.$fileName) or die 'Can\'t open file';
+    while (<file>){
+        print uc;
     }
 }
-nameToNumber();
+sub rainfallChart{
+    open ('data', '<rainfall.txt') or die 'Can\'t open file';
+    while(<data>){
+        my ($location, $rain) = split;
+        printf "%13s||%s\n", ($location, '*' x $rain);
+    }
+    close 'data';
+}
+sub rainfallInInches{
+    open ('rainIn', '<rainfall.txt') or die 'Can\'t open file';
+    open (my $rainOut, '>', 'rainfallInches.txt') or die 'Can\'t open file';
+    while(<rainIn>){
+        my ($location, $rain) = split;
+        my $rainInches = $rain / 25.4;
+        printf <$rainOut>, '%s %.2f\n', ($location, $rainInches);
+    }
+    close 'rainIn';
+    close $rainOut;
+}
+rainfallInInches();
