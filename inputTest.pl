@@ -1,5 +1,5 @@
 use strict;
 use warnings;
 use input;
-print input::inputInt();
-print input::inputInt('Enter area [m^2]');
+print input::int();
+print input::float('Enter area [m^2]');

@@ -1,5 +1,6 @@
 use strict;
 use warnings;
+use input;
 sub sayName{
     print 'Andrew stanton';
 }
@@ -9,23 +10,17 @@ sub sayHello2{
     };
 }
 sub euros2pounds{
-    print('Enter amount in Euros: ');
-    print (<> / 1.15);
+    print (input::float('Enter amount in Euros') / 1.15);
 }
 sub addUp{
-    print 'Enter first number: ';
-    my $v1 = <>;
-    print 'Enter second number: ';
-    my $v2 = <>;
+    my $v1 = input::float('Enter first number');
+    my $v2 = input::float('Enter second number');
     print ($v1 + $v2);
 }
 sub changeCounter{
-    print 'How many 1p coins: ';
-    my $oneP = <>;
-    print 'How many 2p coins: ';
-    my $twoP = <>;
-    print 'How many 5p coins: ';
-    my $fiveP = <>;
+    my $oneP = input::int('How many 1p coins');
+    my $twoP = input::int('How many 2p coins');
+    my $fiveP = input::int('How many 5p coins');
     print 'The total amount is: ', $fiveP * 5 + $twoP * 2 + $oneP, "\n";
 }
 sub tenHellos{
@@ -47,13 +42,11 @@ sub weightsTable{
     }
 }
 sub futureValue{
-    print 'Initial balance: ';
-    my $initBalance = <>;
-    print 'Years to invest: ';
-    my $years = <>;
+    my $initBalance = input::float('Initial balance');
+    my $years = input::float('Years to invest');
     foreach(1 .. $years){
         $initBalance *= 1.055;
     }
     print "Final balance: $initBalance\n";
 }
-sayHello2();
+futureValue();

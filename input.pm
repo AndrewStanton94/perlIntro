@@ -1,7 +1,7 @@
 package input;
 use strict;
 use warnings;
-sub inputInt{
+sub int{
     my $prompt = shift;
     $prompt = 'Enter an integer' unless (defined $prompt);
     $prompt .= ': ';
@@ -13,5 +13,18 @@ sub inputInt{
     }
     return $input;
 }
-# print inputInt('A number');
+sub float{
+    my $prompt = shift;
+    $prompt = 'Enter a float' unless (defined $prompt);
+    $prompt .= ': ';
+    my $input = '';
+    until($input =~ /^[0-9]+(\.[0-9]+)?$/){
+        print $prompt;
+        $input = <>;
+        chomp $input;
+    }
+    return $input;
+}
+# print aint('A int');
+# print float('A float');
 1;

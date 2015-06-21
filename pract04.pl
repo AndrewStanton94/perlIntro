@@ -15,8 +15,7 @@ sub formalName{
     print "$initial.$lastName";
 }
 sub kilos2Pounds{
-    print 'Enter a weight in kilograms: ';
-    my $kilos = <>;
+    my $kilos = input::int('Enter a weight in kilograms');
     my $pounds = 2.2 * $kilos;
     printf "%.2f kilos is equal to %.2f pounds\n", ($kilos, $pounds);
 }
@@ -25,15 +24,12 @@ sub generateEmail{
     my $firstName = <>;
     print "Enter last name: ";
     my $lastName = <>;
-    print "Enter year of enrolment: ";
-    my $year = <>;
-    chomp $year;
+    my $year = input::int("Enter year of enrolment");
     printf "%.4s.%.1s.%s\@myport.ac.uk\n", ($lastName, $firstName, substr($year, -2));
 }
 sub gradeTest{
     my $grades = 'FFFFCCBBAAA';
-    print "Enter mark: ";
-    my $mark = <>;
+    my $mark = input::int("Enter mark");
     if (1 <= $mark && $mark <= 10 ){
         my $result = substr $grades, $mark, 1;
         print "$result\n";
@@ -46,10 +42,8 @@ sub singASong{
     print 'Enter lyric: ';
     my $lyric = <>;
     chomp $lyric;
-    print 'Enter number of lines: ';
-    my $lines = <>;
-    print 'Enter number of lyrics per line: ';
-    my $lyricsPerLine = <>;
+    my $lines = input::int('Enter number of lines');
+    my $lyricsPerLine = input::int('Enter number of lyrics per line');
     my $line = ($lyric.' ') x $lyricsPerLine;
     $line .= "\n";
     foreach(1 .. $lines) {
@@ -77,8 +71,7 @@ sub nameToNumber{
     chomp $name;
     my $wordLength = length $name;
     foreach(0 .. $wordLength - 1) {
-        print substr $name, $_, 1 . "\n";
-        # print "$_ Hi";
+        print substr($name, $_, 1), "\n";
     }
 }
 nameToNumber();

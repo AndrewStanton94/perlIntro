@@ -1,73 +1,54 @@
 use strict;
 use warnings;
 use Math::Trig;
-
-#print &pi;
-
+use input;
 sub circumferenceOfCircle{
-    print 'What is the radius: ';    
-    return <> * 2 * pi . "\n";
+    return input::float('What is the radius') * 2 * pi . "\n";
 }
-
 sub areaofCircle{
-    print 'Radius: ';
-    my $area = <>**2 * pi;
-    # print "$area\n";
+    my $area = input::int('Radius')**2 * pi;
     return $area;
 }
-
 sub costOfPizza{
-    my $area = areaofCircle();
-    return $area / 1.5;
+    return areaofCircle() / 1.5;
 }
-
 sub getXY{
     my %data = (
-        x1 => '', 
-        x2 => '', 
-        y1 => '', 
-        y2 => '', 
+        x1 => '',
+        x2 => '',
+        y1 => '',
+        y2 => '',
     );
-
     foreach (sort keys %data){
-        print "Enter $_:";
-        $data{$_} = <>;     # Manipulating single element so treat as scalar
+        $data{$_} = input::float("Enter $_");     # Manipulating single element so treat as scalar
     }
-    
     my $dx = $data{x2} - $data{x1};
     my $dy = $data{y2} - $data{y1};
     my @ans = ($dx, $dy,);
     return @ans;
 }
-
 sub slopeOfLine{
     my @xy = getXY();
     my $m = $xy[1] / $xy[0];
     return $m;
 }
-
 sub distanceBetweenPoints{
     my @xy = getXY();
     my $ans = sqrt (($xy[0]**2) + ($xy[1]**2));
     return $ans;
 }
-
 sub travelStatistics{
-    print 'Average speed [km h^-1]: ';
-    my $vel = <>;
-    print 'Duration of travel: ';
-    my $time = <>;
+    my $vel = input::float('Average speed [km h^-1]');
+    my $time = input::float('Duration of travel');
     my $distance = $vel * $time;
     my $fuelUsed = $distance / 5;
     return ($distance,  $fuelUsed);
 }
-
 sub sumOfNumbers{
     my $lim;
     my $sum = 0;
     if (@_ == 0) {
-        print 'Number to sum to: ';
-        $lim = <>;
+        $lim = input::int('Number to sum to');
     }
     else {
         $lim = $_[0];
@@ -77,14 +58,11 @@ sub sumOfNumbers{
     }
     return $sum;
 }
-
 sub averageOfNumbers{
-    print 'Get average of sum of range 1 to: ';
-    my $max = <>;
+    my $max = input::int('Get average of sum of range 1 to');
     my $sum = sumOfNumbers($max);
     return $sum / $max;
 }
-
 sub getDenom{
     my $d = $_[0];
     my $suffix;
@@ -97,18 +75,12 @@ sub getDenom{
     }
     return $d . $suffix;
 }
-
 sub bsc{
-    print 'Amount of money [p]: ';
-    my $pence = <>;
+    my $pence = input::int('Amount of money [p]');
     my @denoms = (200, 100, 50, 20, 10, 5, 2, 1);
     print "Denomination\tQuantity\n";
     foreach (@denoms){
         print getDenom($_), int $pence / $_, "\n";
         $pence %= $_;
     }
-}
-# print getXY();
-foreach (getXY()){
-    print "$_\n";
 }
