@@ -103,9 +103,25 @@ sub rainfallInInches{
     while(<rainIn>){
         my ($location, $rain) = split;
         my $rainInches = $rain / 25.4;
-        printf <$rainOut>, '%s %.2f\n', ($location, $rainInches);
+        printf $rainOut "%s %.2f\n", ($location, $rainInches);
     }
     close 'rainIn';
     close $rainOut;
 }
-rainfallInInches();
+sub wc{
+    print 'Enter filename: ';
+    my $filename = <>;
+    open my $file, "<$filename";
+    my @lines = <$file>;
+    my $numberofLines = @lines;
+    my $words = 0;
+    my $characters = 0;
+    foreach my $line (@lines){
+        chomp $line;
+        $characters += length $line;
+        $words += split ' ', $line;
+    }
+    say "Lines: $numberofLines\nWords: $words\nCharacters: $characters";
+    close $file;
+}
+wc();
