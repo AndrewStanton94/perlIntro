@@ -114,8 +114,7 @@ sub wc{
     open my $file, "<$filename";
     my @lines = <$file>;
     my $numberofLines = @lines;
-    my $words = 0;
-    my $characters = 0;
+    my $words, my $characters = 0;
     foreach my $line (@lines){
         chomp $line;
         $characters += length $line;
