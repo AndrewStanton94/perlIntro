@@ -25,6 +25,4 @@ sub float{
     }
     return $input;
 }
-# print aint('A int');
-# print float('A float');
 1;
